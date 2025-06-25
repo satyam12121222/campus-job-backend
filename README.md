@@ -32,6 +32,7 @@ A Node.js/Express backend for a campus job portal with authentication, job posti
 5. Set the **Start Command** to `npm start`.
 6. Add the environment variables from your `.env` file (e.g. `MONGO_URI` and `JWT_SECRET`) in the Render dashboard.
 7. Deploy the service. Render will install dependencies and start the server.
+8. You can also use the provided `render.yaml` for one-click deploy setup.
 
 ## API Endpoints
 See the code for available endpoints and usage. 
