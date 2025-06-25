@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form id="registerForm">
+        <label>Name: <input type="text" name="name" required></label><br>
+        <label>Email: <input type="email" name="email" required></label><br>
+        <label>Password: <input type="password" name="password" required></label><br>
+        <label>Role:
+            <select name="role">
+                <option value="student">Student</option>
+                <option value="employer">Employer</option>
+            </select>
+        </label><br>
+        <button type="submit">Register</button>
+    </form>
+    <script src="js/api.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            try {
+                await apiRequest('/api/auth/register', 'POST', data);
+                alert('Registration successful');
+                window.location.href = 'login.html';
+            } catch (err) {
+                alert(err.message || 'Registration failed');
+            }
+        });
+    </script>
+</body>
+</html>
