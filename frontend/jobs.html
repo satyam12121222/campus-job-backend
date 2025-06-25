@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs</title>
+</head>
+<body>
+    <h1>Job Listings</h1>
+    <div id="jobs"></div>
+
+    <script src="js/api.js"></script>
+    <script>
+        async function loadJobs() {
+            try {
+                const jobs = await apiRequest('/api/jobs', 'GET');
+                const container = document.getElementById('jobs');
+                if (!Array.isArray(jobs)) {
+                    container.textContent = 'No jobs found';
+                    return;
+                }
+                container.innerHTML = jobs.map(job => {
+                    return `<div><h3>${job.title}</h3><p>${job.description}</p></div>`;
+                }).join('');
+            } catch (err) {
+                alert('Failed to load jobs');
+            }
+        }
+        loadJobs();
+    </script>
+</body>
+</html>
